@@ -1,11 +1,6 @@
 import numpy as np
 
 
-def quad(Q, x):
-    assert (x.shape[0] == Q.shape[0])
-    assert (Q.shape[0] == Q.shape[1])
-    return np.dot(np.dot(x.T, Q), x), np.dot(Q + Q.T, x)
-
 class quad:
     """
     implements a single quadratic function of the form f = x.T Q x + b.T x + c
@@ -53,8 +48,8 @@ def rosenbrock(x, generate_hessian=False):
     x2 = x[1,0]
     f = np.array([[100*np.power(x2 - x1**2,2) + np.power(1-x1, 2)]])
     grad = np.array([[400*np.power(x1, 3) + 2*x1 - 400*x1*x2 - 2], [200*(x2 - np.power(x1, 2))]])
-    H = np.array([[1200*np.power(x1, 2) - 400*x2 + 2 , -400*x1], [-400*x1 , 200]])
     if generate_hessian:
+        H = np.array([[1200*np.power(x1, 2) - 400*x2 + 2 , -400*x1], [-400*x1 , 200]])
         return f, grad, H
     else:
         return f, grad, None
